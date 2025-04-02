@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Portal</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-color: #e1e4e8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .downloads-section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .download-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .download-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .download-info {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .download-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .download-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Download Portal</h1>
+            <p class="subtitle">Access all your files in one place</p>
+        </header>
+
+        <section class="downloads-section">
+            <h2 class="section-title">Available Downloads</h2>
+            <div class="download-grid">
+                <!-- Download Item 1 -->
+                <div class="download-card">
+                    <h3 class="download-title">File Name 1</h3>
+                    <p class="download-description">Short description of what this file contains and what it's used for.</p>
+                    <div class="download-info">
+                        <span>2.4 MB</span>
+                        <span>Updated: Apr 2, 2025</span>
+                    </div>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+
+                <!-- Download Item 2 -->
+                <div class="download-card">
+                    <h3 class="download-title">File Name 2</h3>
+                    <p class="download-description">Short description of what this file contains and what it's used for.</p>
+                    <div class="download-info">
+                        <span>5.7 MB</span>
+                        <span>Updated: Mar 29, 2025</span>
+                    </div>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+
+                <!-- Download Item 3 -->
+                <div class="download-card">
+                    <h3 class="download-title">File Name 3</h3>
+                    <p class="download-description">Short description of what this file contains and what it's used for.</p>
+                    <div class="download-info">
+                        <span>1.2 MB</span>
+                        <span>Updated: Mar 25, 2025</span>
+                    </div>
+                    <a href="#" class="download-button">Download</a>
+                </div>
+
+                <!-- Add more download cards here -->
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Download Portal. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
