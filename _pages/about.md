@@ -35,5 +35,4 @@ My curiosity extends to understanding the inner workings of automated reasoning 
 
 See my [CV](../assets/pdf/CV_arijit.pdf) here, [DBLP](https://dblp.uni-trier.de/pid/217/0937.html) here. Mail me at arijit.shaw at tcgcrest.org.
 
-{% include social.html %}
 
