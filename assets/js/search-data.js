@@ -457,7 +457,7 @@ ninja.data = [{
         title: 'DBLP',
         section: 'Socials',
         handler: () => {
-          window.open("https://dblp.org/pid/217/0937.html", "_blank");
+          window.open("https://dblp.uni-trier.de/pid/217/0937.html", "_blank");
         },
       },{
         id: 'social-email',
