@@ -24,7 +24,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi! I'm a joint PhD student at [Chennai Mathematical Institute](http://www.cmi.ac.in) and [IAI, TCG CREST](https://www.tcgcrest.org/institutes/iai/), advised by [Kuldeep S. Meel](https://www.cs.toronto.edu/~meel/). Currently, I am a visiting at the [Georgia Institute of Technology](https://www.gatech.edu/).
+Hi! I'm a joint PhD student at [Chennai Mathematical Institute](http://www.cmi.ac.in) and [IAI, TCG CREST](https://www.tcgcrest.org/institutes/iai/), advised by [Kuldeep S. Meel](https://www.cs.toronto.edu/~meel/). Currently, I am a visiting scholar at the [Georgia Institute of Technology](https://www.gatech.edu/).
 
 My work explores the quantitative dimensions of Satisfiability Modulo Theories (SMT). I'm interested about extending SMT solvers to answer quantitative queries and developing techniques for sampling from SMT solution spaces. We have developed volume computing tool for SMT LRA formulas [[KR'25](../assets/pdf/KR25-SMTVol-SSM.pdf)], counting tools for hybrid SMT formulas [[DAC'25](https://arxiv.org/abs/2507.18612), [pact](https://github.com/meelgroup/pact)], bit-vectors formulas [[SMT'24](https://ceur-ws.org/Vol-3725/short2.pdf), [csb](https://github.com/meelgroup/csb)]
 and Skolem functions [[AAAI'24](https://arxiv.org/abs/2312.12026), [SkolemFC](https://github.com/meelgroup/skolemfc)]. We have uniform sampler for bit-vector formulas [[SMT'24](https://ceur-ws.org/Vol-3725/short2.pdf), [csb](https://github.com/meelgroup/csb)] as well.
