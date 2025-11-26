@@ -9,9 +9,12 @@
     year = {2025},
   conference = {KR},
   pdf = {https://arxiv.org/pdf/2508.09934},
+  video = {https://www.youtube.com/watch?v=7ufPIrgL_Dk},
+  doi = {10.24963/kr.2025/53}
   month = {November},
   selected = {true},
   code = {https://github.com/meelgroup/ttc},
+  abstract = {Satisfiability Modulo Theory (SMT) has recently emerged as a powerful tool for solving various automated reasoning problems across diverse domains. Unlike traditional satisfiability methods confined to Boolean variables, SMT can reason on real-life variables like bitvectors, integers, and reals. A natural extension in this context is to ask quantitative questions. One such query in the SMT theory of Linear Real Arithmetic (LRA) is computing the volume of the entire satisfiable region defined by SMT formulas. This problem is important in solving different quantitative verification queries in software verification, cyber-physical systems, and neural networks, to mention a few. We introduce ttc, an efficient algorithm that extends the capabilities of SMT solvers to volume computation. Our method decomposes the solution space of SMT Linear Real Arithmetic formulas into a union of overlapping convex polytopes, then computes their volumes and calculates their union. Our algorithm builds on recent developments in streaming-mode set unions, volume computation algorithms, and AllSAT techniques. Experimental evaluations demonstrate significant performance improvements over existing state-of-the-art approaches.}
 
 }
 
@@ -22,11 +25,13 @@
     booktitle = {Proceedings of Design Automation Conference (DAC)},
     year = {2025},
   conference = {DAC},
+  doi = {https://doi.org/10.1109/DAC63849.2025.11133351},
   month = {June},
   pdf = {https://arxiv.org/pdf/2507.18612},
   arxive = {https://arxiv.org/abs/2507.18612},
   selected = {true},
   code = {https://github.com/meelgroup/pact},
+  abstract = {Satisfiability Modulo Theory (SMT) solvers have advanced automated reasoning, solving complex formulas across discrete and continuous domains. Recent progress in propositional model counting motivates extending SMT capabilities toward model counting, especially for hybrid SMT formulas. Existing approaches, like bit-blasting, are limited to discrete variables, highlighting the challenge of counting solutions projected onto the discrete domain in hybrid formulas. We introduce pact, an SMT model counter for hybrid formulas that uses hashing-based approximate model counting to estimate solutions with theoretical guarantees. pact makes a logarithmic number of SMT solver calls relative to the projection variables, leveraging optimized hash functions. pact achieves significant performance improvements over baselines on a large suite of benchmarks. In particular, out of 14,202 instances, pact successfully finished on 603 instances, while Baseline could only finish on 13 instances.}
 }
 
 
@@ -79,6 +84,9 @@
   doi = {10.24963/kr.2024/71},
   pdf = {https://arxiv.org/abs/2408.07059},
   selected = {true},
+  abstract = {Model counting is a fundamental problem in automated reasoning with applications in probabilistic inference, network reliability, neural network verification, and more. Although model counting is computationally intractable from a theoretical perspective due to its #P-completeness, the past decade has seen significant progress in developing state-of-the-art model counters to address scalability challenges.
+In this work, we conduct a rigorous assessment of the scalability of model counters in the wild. To this end, we surveyed 11 application domains and collected an aggregate of 2262 benchmarks from these domains. We then evaluated six state-of-the-art model counters on these instances to assess scalability and runtime performance.
+Our empirical evaluation demonstrates that the performance of model counters varies significantly across different application domains, underscoring the need for careful selection by the end user. Additionally, we investigated the behavior of different counters with respect to two parameters suggested by the model counting community, finding only a weak correlation. Our analysis highlights the challenges and opportunities for portfolio-based approaches in model counting.}
 }
 
 
