@@ -404,7 +404,7 @@ ninja.data = [{
           section: "News",},{id: "news-attending-fm-update-meeting-at-gandhinagar-will-be-presenting-a-summary-of-my-research",
           title: 'Attending FM Update Meeting at Gandhinagar. Will be presenting a summary of my...',
           description: "",
-          section: "News",},{id: "news-sat-25-in-glasgow-was-fun-second-year-of-co-organizing-the-model-counting-competition-i-also-presented-at-the-smt-workshop-and-model-counting",
+          section: "News",},{id: "news-sat-25-in-glasgow-was-fun-second-year-of-co-organizing-the-model-counting-competition-i-also-presented-at-the-smt-workshop-and-model-counting-workshop",
           title: 'SAT ‘25 in Glasgow was fun! Second year of co-organizing the Model Counting...',
           description: "",
           section: "News",},{id: "news-attending-kr-25-at-melbourne-will-be-presenting-our-paper-on-volume-computation",
