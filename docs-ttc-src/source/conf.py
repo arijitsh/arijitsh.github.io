@@ -13,7 +13,11 @@ author = 'Arijit Shaw'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
+    "sphinx.ext.mathjax",
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -23,5 +27,13 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
+html_theme = "sphinx_rtd_theme"
+
+html_theme_options = {
+    "navigation_depth": 5,
+    "collapse_navigation": False,
+}
+
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
+html_show_sourcelink = False

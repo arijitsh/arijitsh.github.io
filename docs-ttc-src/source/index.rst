@@ -3,15 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-docs-ttc documentation
+ttc Documentation
 ======================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+**ttc**, the Toolbox for Theory Counting, is a tool for measuring the solution space of Satisfiability Modulo Theories (SMT) formulas.
 
+
+This space provides all documentation related to ttc.
+
+Table of Contents
+-----------------
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   installation/index
+   syntax/index
+   tools/index
+   bitvectors/index
+   hybrid/index
+   volume/index
+   function/index
+   applications/index
