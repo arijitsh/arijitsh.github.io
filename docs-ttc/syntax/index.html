@@ -34,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bitvectors/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/index.html">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applications/index.html#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -84,19 +116,47 @@
              
   <section id="syntax">
 <h1>Syntax<a class="headerlink" href="#syntax" title="Link to this heading"></a></h1>
-<p>In ttc, we’ll use an extension of the SMT-LIB syntax to express counting problems.</p>
-<p>We’ll add two new commands to the SMT-LIB syntax:
-- <cite>(declare-projvar &lt;varlist&gt;)</cite>: This command declares a variable as a projection variable. The counting will be done over the projection variables.
-- <cite>(declare-weight &lt;var&gt; &lt;weight&gt;)</cite>: This command declares a variable as a weight variable. The counting will be done with the weights of the weight variables.</p>
-<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">set-logic</span><span class="w"> </span><span class="nv">QF_UFBV</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">declare-const</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">declare-const</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">declare-projvar</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">declare-weight</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">assert</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="mh">#x0a</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">check-sat</span><span class="p">)</span>
+<p>ttc reads standard <a class="reference external" href="https://smt-lib.org">SMT-LIB 2</a> files. Counting is always
+performed over a set of <em>projection variables</em>: ttc reports the number of
+distinct assignments to those variables that can be extended to a model of the
+formula.</p>
+<section id="projection-variables">
+<h2>Projection variables<a class="headerlink" href="#projection-variables" title="Link to this heading"></a></h2>
+<p>There are two ways to mark a variable for projection.</p>
+<ul class="simple">
+<li><p><strong>By prefix.</strong> Any Boolean variable whose name starts with <code class="docutils literal notranslate"><span class="pre">proj_</span></code> is
+treated as a projection variable automatically.</p></li>
+<li><p><strong>By declaration.</strong> Use the <code class="docutils literal notranslate"><span class="pre">declare-projvar</span></code> command to mark already
+declared variables explicitly.</p></li>
+</ul>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">declare-projvar</span> <span class="n">x</span> <span class="n">y</span>)
 </pre></div>
 </div>
+<p>When a formula mixes theories and a subset of the variables are bit-vector or
+Boolean, ttc projects onto those by default. For a pure <code class="docutils literal notranslate"><span class="pre">QF_LRA</span></code> formula,
+pass <code class="docutils literal notranslate"><span class="pre">-P</span></code> to project onto the Boolean variables instead.</p>
+</section>
+<section id="weighted-counting">
+<h2>Weighted counting<a class="headerlink" href="#weighted-counting" title="Link to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">declare-weight</span></code> to assign a weight to a Boolean literal. The weighted
+count sums the weights of the satisfying assignments instead of counting them.</p>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">declare-weight</span> <span class="n">x</span> <span class="m">0</span><span class="n">.1</span>)
+</pre></div>
+</div>
+<p>Weighted counting is currently supported only with exact enumeration (<code class="docutils literal notranslate"><span class="pre">-E</span></code>).</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">set-logic</span> <span class="n">QF_UFBV</span>)
+(<span class="k">declare-const</span> <span class="n">x</span> (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">8</span>))
+(<span class="k">declare-const</span> <span class="n">y</span> (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">8</span>))
+(<span class="k">declare-projvar</span> <span class="n">x</span>)
+(<span class="k">declare-weight</span> <span class="n">x</span> <span class="m">0</span><span class="n">.1</span>)
+(<span class="k">assert</span> (<span class="o">=</span> <span class="n">x</span> <span class="m">#x0a</span>))
+(<span class="k">check-sat</span>)
+</pre></div>
+</div>
+</section>
 </section>
 
 

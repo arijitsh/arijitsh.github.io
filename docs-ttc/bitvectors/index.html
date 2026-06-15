@@ -34,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Counting on Bitvectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/index.html">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applications/index.html#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -84,16 +116,32 @@
              
   <section id="counting-on-bitvectors">
 <h1>Counting on Bitvectors<a class="headerlink" href="#counting-on-bitvectors" title="Link to this heading"></a></h1>
-<p>The first engine counts on bitvectors.</p>
-<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">set-logic</span><span class="w"> </span><span class="nv">QF_UFBV</span><span class="p">)</span>
+<p>Engine 1 counts the models of formulas over the theory of fixed-size
+bit-vectors (logics <code class="docutils literal notranslate"><span class="pre">BV</span></code> and <code class="docutils literal notranslate"><span class="pre">UFBV</span></code>). The formula is eagerly bit-blasted to
+a model-preserving CNF in memory and counted with Arjun + ApproxMC in-process,
+so no intermediate file is written. This engine is auto-selected for bit-vector
+logics.</p>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">set-logic</span> <span class="n">QF_UFBV</span>)
 
-<span class="p">(</span><span class="nf">declare-fun</span><span class="w"> </span><span class="nv">f</span><span class="w"> </span><span class="p">((</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">declare-const</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
+(<span class="k">declare-fun</span> <span class="n">f</span> ((<span class="na">_</span> <span class="na">BitVec</span> <span class="m">8</span>)) (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">8</span>))
+(<span class="k">declare-const</span> <span class="n">x</span> (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">8</span>))
 
-<span class="p">(</span><span class="nf">assert</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nf">f</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="mh">#x0a</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">check-sat</span><span class="p">)</span>
+(<span class="k">assert</span> (<span class="o">=</span> (<span class="n">f</span> <span class="n">x</span>) <span class="m">#x0a</span>))
+(<span class="k">check-sat</span>)
 </pre></div>
 </div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--bvcnf</span></code></dt><dd><p>Force engine 1 (auto-selected for <code class="docutils literal notranslate"><span class="pre">BV</span></code> / <code class="docutils literal notranslate"><span class="pre">UFBV</span></code> logics).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--cnf</span></code></dt><dd><p>Also write the bit-blasted, model-preserving CNF to <code class="docutils literal notranslate"><span class="pre">&lt;input&gt;.cnf</span></code> in
+DIMACS form. The count is still produced in-process.</p>
+</dd>
+</dl>
+<p>For approximate counting, combine with <code class="docutils literal notranslate"><span class="pre">-a</span></code> and tune <code class="docutils literal notranslate"><span class="pre">--epsilon</span></code> /
+<code class="docutils literal notranslate"><span class="pre">--delta</span></code>.</p>
+</section>
 </section>
 
 

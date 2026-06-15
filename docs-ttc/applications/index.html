@@ -20,6 +20,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../references/index.html" />
     <link rel="prev" title="Function Counting" href="../function/index.html" /> 
 </head>
 
@@ -33,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -42,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bitvectors/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -83,13 +116,22 @@
              
   <section id="applications">
 <h1>Applications<a class="headerlink" href="#applications" title="Link to this heading"></a></h1>
-<p>In this page we show usage of ttc for different applications.</p>
-<section id="probabilistc-model-checking">
-<h2>Probabilistc Model Checking<a class="headerlink" href="#probabilistc-model-checking" title="Link to this heading"></a></h2>
-<p>You need to encode as counting over paths.</p>
+<p>Many quantitative reasoning problems reduce to counting the models of an SMT
+formula. This page collects applications that ship as examples with ttc.</p>
+<section id="probabilistic-model-checking">
+<h2>Probabilistic Model Checking<a class="headerlink" href="#probabilistic-model-checking" title="Link to this heading"></a></h2>
+<p>Reachability probabilities in a probabilistic model can be expressed as a
+weighted count over the paths of the model. Encode the model and its paths as
+an SMT formula, mark the path variables for projection, and let ttc count them
+(see the <code class="docutils literal notranslate"><span class="pre">jani-examples</span></code> benchmarks under <code class="docutils literal notranslate"><span class="pre">example/applications</span></code>).</p>
 </section>
 <section id="network-reliability">
 <h2>Network Reliability<a class="headerlink" href="#network-reliability" title="Link to this heading"></a></h2>
+<p>The reliability of a network — the probability that a source stays connected to
+a sink when links fail independently — is a weighted model count over the
+configurations of working and failed links. Each link becomes a Boolean
+variable; ttc counts the configurations that keep the network connected (see
+the <code class="docutils literal notranslate"><span class="pre">node*_edge*</span></code> benchmarks under <code class="docutils literal notranslate"><span class="pre">example/applications</span></code>).</p>
 </section>
 </section>
 
@@ -98,6 +140,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../function/index.html" class="btn btn-neutral float-left" title="Function Counting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../references/index.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

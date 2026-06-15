@@ -34,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bitvectors/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/index.html">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applications/index.html#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -84,7 +116,40 @@
              
   <section id="function-counting">
 <h1>Function Counting<a class="headerlink" href="#function-counting" title="Link to this heading"></a></h1>
-<p>You can use ttc to count the number of functions of SMT formulas with uninterpreted functions. (QF_UFBV logic)</p>
+<p>Engine 4 counts the interpretations (Skolem functions) of an uninterpreted
+function that satisfy a formula, using SkolemFC. It is intended for <code class="docutils literal notranslate"><span class="pre">QF_UFBV</span></code>
+formulas that constrain the behaviour of an uninterpreted function.</p>
+<p>By default the function named <code class="docutils literal notranslate"><span class="pre">mainfunc</span></code> is counted; use <code class="docutils literal notranslate"><span class="pre">--func</span></code> to choose
+another. The example below counts how many 12-bit-to-12-bit functions encode a
+valid non-trivial factorization:</p>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">set-logic</span> <span class="n">QF_UFBV</span>)
+
+(<span class="k">declare-const</span> <span class="n">w</span> (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">12</span>))
+(<span class="k">declare-fun</span> <span class="n">mainfunc</span> ((<span class="na">_</span> <span class="na">BitVec</span> <span class="m">12</span>)) (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">12</span>))
+
+(<span class="k">define-fun</span> <span class="n">out</span> () (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">12</span>) (<span class="n">mainfunc</span> <span class="n">w</span>))
+(<span class="k">define-fun</span> <span class="n">x</span>   () (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">6</span>)  ((<span class="na">_</span> <span class="o">extract</span>  <span class="m">5</span> <span class="m">0</span>) <span class="n">out</span>))
+(<span class="k">define-fun</span> <span class="n">y</span>   () (<span class="na">_</span> <span class="na">BitVec</span> <span class="m">6</span>)  ((<span class="na">_</span> <span class="o">extract</span> <span class="m">11</span> <span class="m">6</span>) <span class="n">out</span>))
+
+<span class="c">; avoid trivial factors</span>
+(<span class="k">assert</span> (<span class="o">bvugt</span> <span class="n">x</span> (<span class="na">_</span> <span class="m">bv1</span> <span class="m">6</span>)))
+(<span class="k">assert</span> (<span class="o">bvugt</span> <span class="n">y</span> (<span class="na">_</span> <span class="m">bv1</span> <span class="m">6</span>)))
+
+<span class="c">; the output must be a valid factorization of w</span>
+(<span class="k">assert</span> (<span class="o">=</span> <span class="n">w</span> (<span class="o">bvmul</span> ((<span class="na">_</span> <span class="o">zero_extend</span> <span class="m">6</span>) <span class="n">x</span>) ((<span class="na">_</span> <span class="o">zero_extend</span> <span class="m">6</span>) <span class="n">y</span>))))
+
+(<span class="k">check-sat</span>)
+</pre></div>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--skolemfc</span></code></dt><dd><p>Force engine 4 (uninterpreted-function counting).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--func</span> <span class="pre">&lt;name&gt;</span></code></dt><dd><p>Name of the uninterpreted function to count (default: <code class="docutils literal notranslate"><span class="pre">mainfunc</span></code>).</p>
+</dd>
+</dl>
+</section>
 </section>
 
 

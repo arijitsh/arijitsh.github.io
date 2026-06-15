@@ -34,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bitvectors/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hybrid/index.html">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hybrid/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/index.html">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applications/index.html#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -84,7 +116,56 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>This section explains how to install the tool.</p>
+<p>ttc is a C++ tool. The instructions below build it from source on Linux.</p>
+<section id="required-packages">
+<h2>Required packages<a class="headerlink" href="#required-packages" title="Link to this heading"></a></h2>
+<p>The following system packages are needed to configure and build ttc:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libboost-program-options-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libgmp-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libeigen3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libisl-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libcdd-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>liblpsolve55-dev
+</pre></div>
+</div>
+<p>These provide the build toolchain plus the libraries ttc links against:
+Boost <code class="docutils literal notranslate"><span class="pre">program_options</span></code> (command-line parsing), GMP (exact arithmetic),
+Eigen3 and ISL (the volume engine), cddlib (polytope canonicalization), and
+lp_solve (linear programming).</p>
+</section>
+<section id="optional-packages">
+<h2>Optional packages<a class="headerlink" href="#optional-packages" title="Link to this heading"></a></h2>
+<p>These are linked when present and otherwise skipped:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libsuitesparse-dev</span></code> — COLAMD / AMD sparse-matrix routines.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libstp-dev</span></code> — the STP bit-vector solver backend.</p></li>
+</ul>
+</section>
+<section id="bundled-solver-components">
+<h2>Bundled solver components<a class="headerlink" href="#bundled-solver-components" title="Link to this heading"></a></h2>
+<p>A few backends are built from source rather than installed as packages, and
+<code class="docutils literal notranslate"><span class="pre">configure.sh</span></code> wires them in:</p>
+<ul class="simple">
+<li><p>a modified version of <a class="reference external" href="https://github.com/meelgroup/ttc">cvc5</a> (the core
+SMT engine);</p></li>
+<li><p>a patched CaDiCaL build (the XOR engine used by projection counting);</p></li>
+<li><p>the SkolemFC stack, which enables the <code class="docutils literal notranslate"><span class="pre">--skolemfc</span></code> function-counting
+engine.</p></li>
+</ul>
+</section>
+<section id="building-from-source">
+<h2>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/meelgroup/ttc
+<span class="nb">cd</span><span class="w"> </span>ttc
+./configure.sh
+<span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j8
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">./configure.sh</span> <span class="pre">-h</span></code> for other build options (<code class="docutils literal notranslate"><span class="pre">--local</span></code>, <code class="docutils literal notranslate"><span class="pre">--static</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--debug</span></code>, <code class="docutils literal notranslate"><span class="pre">--ddnnf</span></code>) and for instructions on building on macOS. The
+resulting binary is <code class="docutils literal notranslate"><span class="pre">build/ttc</span></code>.</p>
+</section>
 </section>
 
 

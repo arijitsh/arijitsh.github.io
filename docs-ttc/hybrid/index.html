@@ -34,6 +34,7 @@
           
           <a href="../index.html" class="icon icon-home">
             docs-ttc
+              <img src="../_static/ttc.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,18 +44,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hybrid Formulas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#required-packages">Required packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#optional-packages">Optional packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#bundled-solver-components">Bundled solver components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html#building-from-source">Building from source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syntax/index.html">Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#projection-variables">Projection variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#weighted-counting">Weighted counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syntax/index.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Set of Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#the-four-engines">The four engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools/index.html#automatic-engine-selection">Automatic engine selection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bitvectors/index.html">Counting on Bitvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bitvectors/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hybrid Formulas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../volume/index.html">Volume Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../volume/index.html#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../function/index.html">Function Counting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../function/index.html#options">Options</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/index.html">Applications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistc-model-checking">Probabilistc Model Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/index.html#probabilistic-model-checking">Probabilistic Model Checking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../applications/index.html#network-reliability">Network Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/index.html#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -84,16 +116,38 @@
              
   <section id="hybrid-formulas">
 <h1>Hybrid Formulas<a class="headerlink" href="#hybrid-formulas" title="Link to this heading"></a></h1>
-<p>By hybrid formulas, we refer to formulas that contain both discrete and continuous variables. For example, the following formula is a hybrid formula:</p>
-<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">set-logic</span><span class="w"> </span><span class="nv">QF_UFBV</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nf">declare-fun</span><span class="w"> </span><span class="nv">f</span><span class="w"> </span><span class="p">((</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">declare-const</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="w"> </span><span class="nv">BitVec</span><span class="w"> </span><span class="mi">8</span><span class="p">))</span>
-
-<span class="p">(</span><span class="nf">assert</span><span class="w"> </span><span class="p">(</span><span class="nb">=</span><span class="w"> </span><span class="p">(</span><span class="nf">f</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="mh">#x0a</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">check-sat</span><span class="p">)</span>
+<p>Hybrid formulas mix discrete and continuous variables. Engine 2 handles them
+with projection-based approximate counting (PACT): it counts the satisfying
+assignments to the discrete (bit-vector / Boolean) projection variables, while
+the continuous part is discharged by the SMT solver.</p>
+<p>This engine is auto-selected for non-<code class="docutils literal notranslate"><span class="pre">BV</span></code>, non-<code class="docutils literal notranslate"><span class="pre">LRA</span></code> logics that have
+bit-vector or Boolean projection variables. In the example below the projection
+variables <code class="docutils literal notranslate"><span class="pre">projA</span></code> and <code class="docutils literal notranslate"><span class="pre">projB</span></code> are Boolean abstractions of constraints over
+the real variable <code class="docutils literal notranslate"><span class="pre">x</span></code> and the integer variable <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-smtlib notranslate"><div class="highlight"><pre><span></span>(<span class="k">set-logic</span> <span class="n">QF_LIRA</span>)
+(<span class="k">declare-fun</span> <span class="n">x</span> () <span class="na">Real</span>)
+(<span class="k">declare-fun</span> <span class="n">y</span> () <span class="na">Int</span>)
+(<span class="k">declare-fun</span> <span class="n">projA</span> () <span class="na">Bool</span>)
+(<span class="k">declare-fun</span> <span class="n">projB</span> () <span class="na">Bool</span>)
+(<span class="k">assert</span> (<span class="o">and</span> (<span class="o">&gt;=</span> <span class="n">x</span> <span class="m">0</span>) (<span class="o">&lt;=</span> <span class="n">x</span> <span class="m">1</span>)))
+(<span class="k">assert</span> (<span class="o">and</span> (<span class="o">&gt;=</span> <span class="n">y</span> <span class="m">0</span>) (<span class="o">&lt;=</span> <span class="n">y</span> <span class="m">1</span>)))
+(<span class="k">assert</span> (<span class="o">=</span> <span class="n">projA</span> (<span class="o">&gt;=</span> <span class="n">x</span> <span class="m">0</span><span class="n">.5</span>)))
+(<span class="k">assert</span> (<span class="o">=</span> <span class="n">projB</span> (<span class="o">=</span> <span class="n">y</span> <span class="m">0</span>)))
+(<span class="k">check-sat</span>)
 </pre></div>
 </div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-P</span></code> / <code class="docutils literal notranslate"><span class="pre">--pact</span></code></dt><dd><p>Force projection-based approximate counting.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-E</span></code> / <code class="docutils literal notranslate"><span class="pre">--enum</span></code></dt><dd><p>Enumerate the projected assignments exactly instead of approximately.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--xor</span></code> / <code class="docutils literal notranslate"><span class="pre">--hash</span></code></dt><dd><p>Select the hashing backend and hash family used for approximate counting.
+See <code class="docutils literal notranslate"><span class="pre">./ttc</span> <span class="pre">--help</span></code> for the full list of backends.</p>
+</dd>
+</dl>
+</section>
 </section>
 
 
