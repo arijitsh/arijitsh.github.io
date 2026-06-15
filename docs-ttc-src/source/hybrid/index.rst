@@ -1,14 +1,38 @@
 Hybrid Formulas
-================
+===============
 
-By hybrid formulas, we refer to formulas that contain both discrete and continuous variables. For example, the following formula is a hybrid formula:
+Hybrid formulas mix discrete and continuous variables. Engine 2 handles them
+with projection-based approximate counting (PACT): it counts the satisfying
+assignments to the discrete (bit-vector / Boolean) projection variables, while
+the continuous part is discharged by the SMT solver.
 
-.. code-block:: scheme
+This engine is auto-selected for non-``BV``, non-``LRA`` logics that have
+bit-vector or Boolean projection variables. In the example below the projection
+variables ``projA`` and ``projB`` are Boolean abstractions of constraints over
+the real variable ``x`` and the integer variable ``y``:
 
-   (set-logic QF_UFBV)
+.. code-block:: smtlib
 
-   (declare-fun f ((_ BitVec 8)) (_ BitVec 8))
-   (declare-const x (_ BitVec 8))
-
-   (assert (= (f x) #x0a))
+   (set-logic QF_LIRA)
+   (declare-fun x () Real)
+   (declare-fun y () Int)
+   (declare-fun projA () Bool)
+   (declare-fun projB () Bool)
+   (assert (and (>= x 0) (<= x 1)))
+   (assert (and (>= y 0) (<= y 1)))
+   (assert (= projA (>= x 0.5)))
+   (assert (= projB (= y 0)))
    (check-sat)
+
+Options
+-------
+
+``-P`` / ``--pact``
+   Force projection-based approximate counting.
+
+``-E`` / ``--enum``
+   Enumerate the projected assignments exactly instead of approximately.
+
+``--xor`` / ``--hash``
+   Select the hashing backend and hash family used for approximate counting.
+   See ``./ttc --help`` for the full list of backends.

@@ -4,19 +4,21 @@
    contain the root `toctree` directive.
 
 ttc Documentation
-======================
+=================
 
-**ttc**, the Toolbox for Theory Counting, is a tool for measuring the solution space of Satisfiability Modulo Theories (SMT) formulas.
+**ttc**, the Toolbox for Theory Counting, is a tool for measuring the solution
+space of Satisfiability Modulo Theories (SMT) formulas. It supports counting
+over a number of theories and their combinations, including bit-vectors and
+uninterpreted functions, as well as volume computation for the theory of linear
+real arithmetic.
 
+This space provides all documentation related to using ttc.
 
-This space provides all documentation related to ttc.
 
 Table of Contents
------------------
-
+^^^^^^^^^^^^^^^^^
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
 
    installation/index
    syntax/index
@@ -26,3 +28,4 @@ Table of Contents
    volume/index
    function/index
    applications/index
+   references/index
