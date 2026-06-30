@@ -144,15 +144,31 @@ lp_solve (linear programming).</p>
 </section>
 <section id="bundled-solver-components">
 <h2>Bundled solver components<a class="headerlink" href="#bundled-solver-components" title="Link to this heading"></a></h2>
-<p>A few backends are built from source rather than installed as packages, and
-<code class="docutils literal notranslate"><span class="pre">configure.sh</span></code> wires them in:</p>
+<p>The SAT, counting, and SMT back-ends are built from source rather than
+installed as packages, and <code class="docutils literal notranslate"><span class="pre">configure.sh</span></code> links them in. You do not install
+these with <code class="docutils literal notranslate"><span class="pre">apt</span></code>; they come from the companion meelgroup repositories.</p>
+<p>The core SMT layer is a modified version of <a class="reference external" href="https://github.com/meelgroup/ttc">cvc5</a>, together with the libraries it bundles:</p>
 <ul class="simple">
-<li><p>a modified version of <a class="reference external" href="https://github.com/meelgroup/ttc">cvc5</a> (the core
-SMT engine);</p></li>
-<li><p>a patched CaDiCaL build (the XOR engine used by projection counting);</p></li>
-<li><p>the SkolemFC stack, which enables the <code class="docutils literal notranslate"><span class="pre">--skolemfc</span></code> function-counting
-engine.</p></li>
+<li><p><strong>poly</strong> (<code class="docutils literal notranslate"><span class="pre">picpoly</span></code> / <code class="docutils literal notranslate"><span class="pre">picpolyxx</span></code>) — polynomial arithmetic;</p></li>
+<li><p><strong>CaDiCaL</strong> — a hand-patched build whose XOR engine drives projection
+counting;</p></li>
+<li><p><strong>CryptoMiniSat</strong> — the bit-vector SAT back-end.</p></li>
 </ul>
+<p>The counting and sampling stack comes from the
+<a class="reference external" href="https://github.com/meelgroup/skolemfc">SkolemFC</a> build and supplies the
+approximate-counting machinery used by the bit-vector and function-counting
+engines:</p>
+<ul class="simple">
+<li><p><strong>ApproxMC</strong> (<code class="docutils literal notranslate"><span class="pre">approxmc</span></code>) — approximate model counter;</p></li>
+<li><p><strong>Arjun</strong> (<code class="docutils literal notranslate"><span class="pre">arjun</span></code>) — independent-support / preprocessing front-end;</p></li>
+<li><p><strong>UniGen</strong> (<code class="docutils literal notranslate"><span class="pre">unigen</span></code>) — uniform sampler;</p></li>
+<li><p><strong>CryptoMiniSat</strong> (<code class="docutils literal notranslate"><span class="pre">cryptominisat5</span></code>) — the underlying SAT solver;</p></li>
+<li><p><strong>SBVA</strong> (<code class="docutils literal notranslate"><span class="pre">sbva</span></code>), <strong>Louvain-Communities</strong> (<code class="docutils literal notranslate"><span class="pre">louvain_communities</span></code>),
+<strong>CaDiCaL</strong> / <strong>CaDiBack</strong> — additional archives pulled in for fully static
+(<code class="docutils literal notranslate"><span class="pre">--static</span></code>) builds.</p></li>
+</ul>
+<p>The standard math libraries <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">dl</span></code>, <code class="docutils literal notranslate"><span class="pre">gmp</span></code> and <code class="docutils literal notranslate"><span class="pre">gmpxx</span></code> are linked as
+well.</p>
 </section>
 <section id="building-from-source">
 <h2>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
