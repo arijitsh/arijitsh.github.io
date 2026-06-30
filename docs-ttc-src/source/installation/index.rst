@@ -34,14 +34,33 @@ These are linked when present and otherwise skipped:
 Bundled solver components
 -------------------------
 
-A few backends are built from source rather than installed as packages, and
-``configure.sh`` wires them in:
+The SAT, counting, and SMT back-ends are built from source rather than
+installed as packages, and ``configure.sh`` links them in. You do not install
+these with ``apt``; they come from the companion meelgroup repositories.
 
-- a modified version of `cvc5 <https://github.com/meelgroup/ttc>`_ (the core
-  SMT engine);
-- a patched CaDiCaL build (the XOR engine used by projection counting);
-- the SkolemFC stack, which enables the ``--skolemfc`` function-counting
-  engine.
+The core SMT layer is a modified version of `cvc5
+<https://github.com/meelgroup/ttc>`_, together with the libraries it bundles:
+
+- **poly** (``picpoly`` / ``picpolyxx``) — polynomial arithmetic;
+- **CaDiCaL** — a hand-patched build whose XOR engine drives projection
+  counting;
+- **CryptoMiniSat** — the bit-vector SAT back-end.
+
+The counting and sampling stack comes from the
+`SkolemFC <https://github.com/meelgroup/skolemfc>`_ build and supplies the
+approximate-counting machinery used by the bit-vector and function-counting
+engines:
+
+- **ApproxMC** (``approxmc``) — approximate model counter;
+- **Arjun** (``arjun``) — independent-support / preprocessing front-end;
+- **UniGen** (``unigen``) — uniform sampler;
+- **CryptoMiniSat** (``cryptominisat5``) — the underlying SAT solver;
+- **SBVA** (``sbva``), **Louvain-Communities** (``louvain_communities``),
+  **CaDiCaL** / **CaDiBack** — additional archives pulled in for fully static
+  (``--static``) builds.
+
+The standard math libraries ``m``, ``dl``, ``gmp`` and ``gmpxx`` are linked as
+well.
 
 Building from source
 --------------------
